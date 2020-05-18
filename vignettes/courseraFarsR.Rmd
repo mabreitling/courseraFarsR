@@ -1,0 +1,24 @@
+---
+title: "courseraFarsR"
+output: rmarkdown::html_vignette
+description: >
+  This vignette should grant you a smooth start into
+  handling FARS accident data with the courseraFarsR
+  package.
+vignette: >
+  %\VignetteIndexEntry{courseraFarsR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+Testing vignette wrting
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(courseraFarsR)
+```
