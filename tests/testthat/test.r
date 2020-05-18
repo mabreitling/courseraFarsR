@@ -8,7 +8,7 @@ test_that("make_filename produces correct character", {
 
 # test if data is read and is of class "data.frame"
 test_that("check reading raw data and transforming to tibble", {
-  acc_tibble <- courseraFarsR::fars_read(make_filename(2013))
+  acc_tibble <- courseraFarsR::fars_read(system.file("extdata", "accident_2013.csv.bz2", package = "courseraFarsR"))
   expect_is(acc_tibble, 'data.frame')
 })
 
