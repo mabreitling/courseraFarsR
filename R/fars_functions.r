@@ -28,6 +28,7 @@ fars_read <- function(filename) {
 #' @return filename character of filename
 #'
 #' @examples \dontrun{make_filename(2014)}
+#' @export
 make_filename <- function(year) {
   year <- as.integer(year)
   sprintf("accident_%d.csv.bz2", year)
@@ -50,6 +51,7 @@ make_filename <- function(year) {
 #' @examples
 #' \dontrun{fars_read_years(2013)}
 #' \dontrun{fars_read_years(c(2013, 2014))}
+#' @export
 fars_read_years <- function(years) {
   lapply(years, function(year) {
     file <- make_filename(year)
