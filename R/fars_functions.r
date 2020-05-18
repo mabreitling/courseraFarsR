@@ -9,7 +9,7 @@
 #' @importFrom readr read_csv
 #' @importFrom dplyr tbl_df
 #' @return returns tidy tibble of accident data
-#' @examples fars_read('accident_2013.csv.bz2')
+#' @examples \dontrun{fars_read('accident_2013.csv.bz2')}
 #' @export
 fars_read <- function(filename) {
   if(!file.exists(filename))
@@ -25,9 +25,9 @@ fars_read <- function(filename) {
 #' Helper function to stitch together FARS data filename for a given \code{year}.
 #'
 #' @param year year for which the filename should be constructed
-#' @return character of filename
+#' @return filename character of filename
 #'
-#' @examples make_filename(2014)
+#' @examples \dontrun{make_filename(2014)}
 make_filename <- function(year) {
   year <- as.integer(year)
   sprintf("accident_%d.csv.bz2", year)
@@ -42,14 +42,14 @@ make_filename <- function(year) {
 #' an error if file for a given years does not exist.
 #'
 #' @param years year as numeric or multiple years as numeric vector
-#' @importFrom dplyr mutate select
+#' @importFrom dplyr mutate select "%>%"
 #'
 #' @return returns list of month/year-combinations with seperate tibble list
 #'   element for every year
 #'
 #' @examples
-#' fars_read_years(2013)
-#' fars_read_years(c(2013, 2014))
+#' \dontrun{fars_read_years(2013)}
+#' \dontrun{fars_read_years(c(2013, 2014))}
 fars_read_years <- function(years) {
   lapply(years, function(year) {
     file <- make_filename(year)
@@ -64,19 +64,20 @@ fars_read_years <- function(years) {
   })
 }
 
+utils::globalVariables(c("year", "MONTH", "STATE", "years"))
 #' FARS summary by year and month
 #'
 #' \code{fars_summarize_years()} computes monthly summary statistics (counts of
 #' accidents) for a given year or vector of \code{years}.
 #'
-#' @param filename path to the csv file to be read in
-#' @importFrom dplyr bind_rows group_by summarize
+#' @param years vector of years or single year for which data is summarized
+#' @importFrom dplyr bind_rows group_by summarize "%>%" n
 #' @importFrom tidyr spread
 #'
-#' @return returns tidy tibble
+#' @return summary by year and month
 #'
-#' @examples fars_summarize_years(2013)
-#' @examples fars_summarize_years(c(2013,2014))
+#' @examples \dontrun{fars_summarize_years(2013)}
+#' @examples \dontrun{fars_summarize_years(c(2013,2014))}
 #'
 #' @export
 fars_summarize_years <- function(years) {
@@ -104,7 +105,7 @@ fars_summarize_years <- function(years) {
 #'
 #' @return None
 #' @examples
-#' fars_map_state(1, 2014)
+#' \dontrun{fars_map_state(1, 2014)}
 #'
 #' @export
 fars_map_state <- function(state.num, year) {
